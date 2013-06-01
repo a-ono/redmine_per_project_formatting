@@ -1,3 +1,4 @@
+require_dependency 'activities_controller'
 require_dependency 'boards_controller'
 require_dependency 'documents_controller'
 require_dependency 'issues_controller'
@@ -24,6 +25,7 @@ module RedminePerProjectFormatting
   end
 
   [
+    ActivitiesController,
     BoardsController,
     DocumentsController,
     IssuesController,
