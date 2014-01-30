@@ -9,6 +9,8 @@ require_dependency 'previews_controller'
 require_dependency 'projects_controller'
 require_dependency 'wiki_controller'
 require_dependency 'wikis_controller'
+require_dependency 'welcome_controller'
+require_dependency 'settings_controller'
 
 module RedminePerProjectFormatting
   module ControllerPatch
@@ -20,7 +22,7 @@ module RedminePerProjectFormatting
     end
 
     def set_current_project_for_text_formatting
-      Setting.current_project = @project if @project
+      Setting.current_project = @project
     end
   end
 
@@ -35,7 +37,9 @@ module RedminePerProjectFormatting
     PreviewsController,
     ProjectsController,
     WikiController,
-    WikisController
+    WikisController,
+    WelcomeController,
+    SettingsController
   ].each do |c|
     c.send(:include, ControllerPatch)
   end
