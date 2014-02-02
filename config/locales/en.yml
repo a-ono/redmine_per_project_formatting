@@ -1,3 +1,3 @@
-# English strings go here for Rails i18n
 en:
-  # my_label: "My label"
+  project_wide_formatting: "Apply project-wide formatting"
+  field_modules_for_formatting: "Select modules to apply formatting"

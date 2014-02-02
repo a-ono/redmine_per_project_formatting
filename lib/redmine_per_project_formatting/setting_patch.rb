@@ -15,16 +15,15 @@ module RedminePerProjectFormatting
 
     module ClassMethods
       def text_formatting_with_per_project
-        format = current_project.try(:text_formatting)
-        format.blank? ? text_formatting_without_per_project : format
+        current_text_formatting || text_formatting_without_per_project
       end
 
-      def current_project
-        Thread.current[:current_project]
+      def current_text_formatting
+        Thread.current[:current_text_formatting]
       end
 
-      def current_project=(project)
-        Thread.current[:current_project] = project
+      def current_text_formatting=(format)
+        Thread.current[:current_text_formatting] = format.present? ? format : nil
       end
     end
   end
