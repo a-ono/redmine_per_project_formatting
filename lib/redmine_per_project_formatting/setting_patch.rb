@@ -25,6 +25,16 @@ module RedminePerProjectFormatting
       def current_text_formatting=(format)
         Thread.current[:current_text_formatting] = format.present? ? format : nil
       end
+
+      def within_text_formatting(format, &block)
+        current = current_text_formatting
+        begin
+          self.current_text_formatting = format
+          block.call
+        rescue
+          self.current_text_formatting = current
+        end
+      end
     end
   end
 
