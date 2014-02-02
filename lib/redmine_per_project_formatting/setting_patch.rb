@@ -31,7 +31,7 @@ module RedminePerProjectFormatting
         begin
           self.current_text_formatting = format
           block.call
-        rescue
+        ensure
           self.current_text_formatting = current
         end
       end
