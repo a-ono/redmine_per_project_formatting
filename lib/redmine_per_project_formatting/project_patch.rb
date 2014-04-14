@@ -1,5 +1,3 @@
-require_dependency 'project'
-
 module RedminePerProjectFormatting
   module ProjectPatch
     def self.included(base)
@@ -22,6 +20,4 @@ module RedminePerProjectFormatting
       end
     end
   end
-
-  Project.send(:include, ProjectPatch)
 end

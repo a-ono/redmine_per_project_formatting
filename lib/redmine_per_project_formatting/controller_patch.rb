@@ -1,17 +1,3 @@
-require_dependency 'activities_controller'
-require_dependency 'boards_controller'
-require_dependency 'documents_controller'
-require_dependency 'issues_controller'
-require_dependency 'journals_controller'
-require_dependency 'messages_controller'
-require_dependency 'news_controller'
-require_dependency 'previews_controller'
-require_dependency 'projects_controller'
-require_dependency 'wiki_controller'
-require_dependency 'wikis_controller'
-require_dependency 'welcome_controller'
-require_dependency 'settings_controller'
-
 module RedminePerProjectFormatting
   module ControllerPatch
     def self.included(base)
@@ -42,23 +28,5 @@ module RedminePerProjectFormatting
         Setting.current_text_formatting = nil
       end
     end
-  end
-
-  [
-    ActivitiesController,
-    BoardsController,
-    DocumentsController,
-    IssuesController,
-    JournalsController,
-    MessagesController,
-    NewsController,
-    PreviewsController,
-    ProjectsController,
-    WikiController,
-    WikisController,
-    WelcomeController,
-    SettingsController
-  ].each do |c|
-    c.send(:include, ControllerPatch)
   end
 end

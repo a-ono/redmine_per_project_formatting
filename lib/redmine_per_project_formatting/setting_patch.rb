@@ -1,5 +1,3 @@
-require_dependency 'setting'
-
 module RedminePerProjectFormatting
   module SettingPatch
     def self.included(base)
@@ -37,6 +35,4 @@ module RedminePerProjectFormatting
       end
     end
   end
-
-  Setting.send(:include, SettingPatch)
 end
