@@ -8,23 +8,6 @@ module RedminePerProjectFormatting
   def self.apply_patch
     Project.send(:include, ProjectPatch)
     Setting.send(:include, SettingPatch)
-
-    [
-      ActivitiesController,
-      BoardsController,
-      DocumentsController,
-      IssuesController,
-      JournalsController,
-      MessagesController,
-      NewsController,
-      PreviewsController,
-      ProjectsController,
-      WikiController,
-      WikisController,
-      WelcomeController,
-      SettingsController
-    ].each do |c|
-      c.send(:include, ControllerPatch)
-    end
+    ApplicationController.send(:include, ControllerPatch)
   end
 end

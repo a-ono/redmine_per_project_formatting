@@ -1,9 +1,21 @@
 module RedminePerProjectFormatting
   module ControllerPatch
+    @@_patched = {}
+
     def self.included(base)
       base.class_eval do
         unloadable
-        before_filter :set_current_text_formatting
+
+        after_filter :reset_current_text_formatting
+
+        def initialize
+          # Ugly hack: We want to append the filter to the last of before filters from ApplicationController
+          unless @@_patched[self.class]
+            self.class.before_filter :set_current_text_formatting
+            @@_patched[self.class] = true
+          end
+          super
+        end
       end
     end
 
@@ -11,22 +23,16 @@ module RedminePerProjectFormatting
       format = Setting.current_text_formatting = @project.try(:text_formatting)
       return if format.blank? || @project.project_wide_formatting
 
-      mod = case controller = params[:controller]
-        when "issues" then "issue_tracking"
-        when "journals" then "issue_tracking"
-        when "wikis" then "wiki"
-        when "messages" then "boards"
-        when "previews"
-          case params[:action]
-          when "issue" then "issue_tracking"
-          when "news" then "news"
-          end
-        else controller
+      modules = @project.modules_for_formatting.to_a.map(&:to_sym)
+      permissions = Redmine::AccessControl.permissions.select {|p| modules.include?(p.project_module)}
+      actions = permissions.flat_map(&:actions)
+      unless actions.include?("#{params[:controller]}/#{params[:action]}")
+        reset_current_text_formatting
       end
+    end
 
-      unless @project.modules_for_formatting.to_a.include?(mod)
-        Setting.current_text_formatting = nil
-      end
+    def reset_current_text_formatting
+      Setting.current_text_formatting = nil
     end
   end
 end

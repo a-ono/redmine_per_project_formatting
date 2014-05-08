@@ -15,8 +15,7 @@ module RedminePerProjectFormatting
       end
 
       def module_options
-        (enabled_module_names & %w[issue_tracking news documents wiki boards]
-        ).map {|name| [I18n.t("project_module_" + name), name]}
+        enabled_module_names.map {|name| [I18n.t("project_module_" + name), name]}
       end
     end
   end
