@@ -6,7 +6,7 @@ module RedminePerProjectFormatting
       options = p.module_options
       default_formatting = Setting.text_formatting_without_per_project
       content_tag(:p, f.select(:text_formatting,
-        Redmine::WikiFormatting.format_names.map {|f| [f, f.to_s]},
+        Redmine::WikiFormatting.format_names.map {|n| [n, n.to_s]},
         :include_blank => "Redmine setting (#{default_formatting})", :label => :setting_text_formatting
       )) +
       content_tag(:p,
