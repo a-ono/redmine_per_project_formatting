@@ -6,8 +6,8 @@ It also be able to change text format per project module. (e.g. issue_tracking, 
 
 ## Requirements
 
-* Redmine 4.x (version {0.1.0}[https://github.com/a-ono/redmine_per_project_formatting/releases/tag/0.1.0])
-* Redmine 3.x (version {0.0.5}[https://github.com/a-ono/redmine_per_project_formatting/releases/tag/0.0.5])
+* Redmine 4.x (version [0.1.0](https://github.com/a-ono/redmine_per_project_formatting/releases/tag/0.1.0))
+* Redmine 3.x (version [0.0.5](https://github.com/a-ono/redmine_per_project_formatting/releases/tag/0.0.5))
 
 ## Plugin installation and setup
 
