@@ -4,10 +4,9 @@ module RedminePerProjectFormatting
       p = context[:project]
       f = context[:form]
       options = p.module_options
-      default_formatting = Setting.text_formatting_without_per_project
       content_tag(:p, f.select(:text_formatting,
         Redmine::WikiFormatting.format_names.map {|n| [n, n.to_s]},
-        :include_blank => "Redmine setting (#{default_formatting})", :label => :setting_text_formatting
+        :include_blank => "Redmine setting (#{Setting[:text_formatting]})", :label => :setting_text_formatting
       )) +
       content_tag(:p,
         label_tag(:project_wide_formatting, I18n.t(:project_wide_formatting)) +
