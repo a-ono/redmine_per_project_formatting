@@ -10,7 +10,10 @@ module RedminePerProjectFormatting
     ::Setting.singleton_class.prepend SettingPatch
     if defined?(RedmineCkeditor)
       require 'redmine_per_project_formatting/mail_handler_patch'
+      require 'redmine_per_project_formatting/mailer_patch'
       ::MailHandler.prepend MailHandlerPatch
+      ::Mailer.prepend MailerPatch
     end
   end
 end
+
