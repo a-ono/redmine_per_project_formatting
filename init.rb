@@ -1,9 +1,7 @@
 require 'redmine'
-require 'redmine_per_project_formatting'
+require File.expand_path('../lib/redmine_per_project_formatting', __FILE__)
 
-Rails.application.config.to_prepare do
-  RedminePerProjectFormatting.apply_patch
-end
+RedminePerProjectFormatting.apply_patch
 
 Redmine::Plugin.register :redmine_per_project_formatting do
   name 'Redmine per project formatting plugin'

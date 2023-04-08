@@ -1,7 +1,7 @@
-require 'redmine_per_project_formatting/project_listener'
-require 'redmine_per_project_formatting/application_controller_patch'
-require 'redmine_per_project_formatting/project_patch'
-require 'redmine_per_project_formatting/setting_patch'
+require File.expand_path('../redmine_per_project_formatting/project_listener', __FILE__)
+require File.expand_path('../redmine_per_project_formatting/application_controller_patch', __FILE__)
+require File.expand_path('../redmine_per_project_formatting/project_patch', __FILE__)
+require File.expand_path('../redmine_per_project_formatting/setting_patch', __FILE__)
 
 module RedminePerProjectFormatting
   def self.apply_patch
